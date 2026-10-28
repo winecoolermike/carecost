@@ -1,0 +1,100 @@
+{
+ "built_at": "2026-10-27T18:13:40-07:00",
+ "radius_miles": 25.0,
+ "sources": {
+  "tx_hcssa": {
+   "url": "https://apps.hhs.texas.gov/providers/directories/HHA.xlsx",
+   "as_of": "2026-10-26",
+   "retrieved": "2026-10-27",
+   "title": "Texas Health and Human Services Commission  Directory of Home and Community Support Services Agencies (HCSSA)  with an Active License as of 10/26/2026"
+  },
+  "provider": {
+   "id": "6jpm-sxkc",
+   "title": "Home Health Care Agencies",
+   "modified": "2026-09-21",
+   "released": "2026-10-21",
+   "landing": "https://data.cms.gov/provider-data/dataset/6jpm-sxkc",
+   "url": "https://data.cms.gov/provider-data/sites/default/files/resources/92900270a41131976715718c15738673_1791237945/HH_Provider_Oct2026.csv",
+   "retrieved": "2026-10-27"
+  },
+  "hhcahps": {
+   "id": "ccn4-8vby",
+   "title": "Home Health Care - Patient Survey (HHCAHPS) 2025Q2 to 2026Q1",
+   "modified": "2026-09-16",
+   "released": "2026-10-21",
+   "landing": "https://data.cms.gov/provider-data/dataset/ccn4-8vby",
+   "url": "https://data.cms.gov/provider-data/sites/default/files/resources/5b77d00a85f35d1e7fdbb72de39ddb00_1791237946/HHCAHPS_Provider_Oct2026.csv",
+   "retrieved": "2026-10-27"
+  },
+  "zips": {
+   "id": "m5eg-upu5",
+   "title": "Home Health Care - Zip Codes",
+   "modified": "2026-09-21",
+   "released": "2026-10-21",
+   "landing": "https://data.cms.gov/provider-data/dataset/m5eg-upu5",
+   "url": "https://data.cms.gov/provider-data/sites/default/files/resources/5771ff627c6b79f1346c4ff8fb9b4c76_1791237944/HH_Zip_Oct2026.csv",
+   "retrieved": "2026-10-27"
+  },
+  "zcta": {
+   "url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2024_Gazetteer/2024_Gaz_zcta_national.zip",
+   "note": "Census 2024 ZCTA Gazetteer internal points; ZCTAs approximate USPS ZIPs",
+   "retrieved": "2026-10-27"
+  }
+ },
+ "benchmark": {
+  "source": "CareScout (Genworth) Cost of Care Survey 2025, Texas state median",
+  "source_url": "https://www.carescout.com/cost-of-care",
+  "source_pdf": "https://pro.genworth.com/riiproweb/productinfo/pdf/282102.pdf",
+  "collected": "July-November 2025",
+  "non_medical_hourly_usd": 30,
+  "private_duty_nurse_hourly_usd": 90,
+  "fact_or_inference": "estimate",
+  "reuse_terms": "unverified - cite and link only"
+ },
+ "counts": {
+  "agencies_total": 7395,
+  "tx_rows_in_file": 8878,
+  "excluded": {
+   "hospice_only": 1446,
+   "expired": 93
+  },
+  "medicare_matched": 1965,
+  "cms_only_unmatched": 56,
+  "cms_tx_providers": 1831,
+  "care_type": {
+   "companionship": 6044,
+   "personal_care": 6044,
+   "skilled_nursing": 3861
+  },
+  "with_quality_stars": 1182,
+  "with_survey_stars": 663,
+  "confidence": {
+   "High": 7030,
+   "Medium": 363,
+   "Low": 2
+  },
+  "review_queue": 1885,
+  "review_queue_by_priority": {
+   "normal": 460,
+   "low": 1425
+  },
+  "groups": 6854,
+  "review_queue_by_reason": {
+   "contradiction": 365,
+   "stale": 459,
+   "status_check": 1059,
+   "low_confidence": 2
+  },
+  "no_coordinates": 2,
+  "shards": 49,
+  "largest_shard_bytes": 913221,
+  "rate_spread_flags": 0,
+  "address_hidden_residential": 340,
+  "largest_shard": {
+   "file": "p770.json",
+   "bytes": 913221,
+   "gzip9_bytes": 155417
+  }
+ },
+ "rate_spread_flags": []
+}

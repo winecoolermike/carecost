@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CareCost Texas — compare home care agencies by ZIP</title>
+<meta name="description" content="Free comparison of Texas home care and home health agencies by ZIP code, using public state licensing and Medicare data.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <h1>CareCost <span class="st">Texas</span></h1>
+  <p class="tag">Find home care agencies near you. Free public data, no sign-up.</p>
+</header>
+<main>
+<form id="f" class="search" autocomplete="off">
+  <label for="zip" class="sr">ZIP code</label>
+  <input id="zip" inputmode="numeric" pattern="\d{5}" maxlength="5" placeholder="Texas ZIP, e.g. 78701" required>
+  <button type="submit" class="go">Search</button>
+  <button type="button" id="loc" class="ghost" title="Use my location">📍 Use my location</button>
+</form>
+<div class="chips" role="group" aria-label="Care type">
+  <button class="chip" data-ct="C" aria-pressed="false">🤝 Companionship</button>
+  <button class="chip" data-ct="P" aria-pressed="false">🛁 Personal care</button>
+  <button class="chip" data-ct="S" aria-pressed="false">🩺 Skilled nursing</button>
+</div>
+<div class="sortrow">
+  <span id="count" aria-live="polite"></span>
+  <span class="ctl"><label>Within <select id="rad"><option value="10" selected>10 mi</option><option value="25">25 mi</option></select></label>
+  <label>Sort <select id="sort"><option value="dist">Nearest</option><option value="stars">Medicare stars</option></select></label></span>
+</div>
+<p id="rule" class="rule"></p>
+<section id="bench" class="bench" hidden></section>
+<section id="msg" class="msg" hidden></section>
+<section id="top" class="list" hidden></section>
+<h2 id="lhead" class="sec" hidden></h2>
+<section id="list" class="list"></section>
+<button id="more" class="ghost wide" hidden>Show more</button>
+
+<section class="info" id="how">
+  <h2>How we get this data</h2>
+  <ul>
+    <li><b>Agency list, address, phone, services:</b> Texas HHSC directory of licensed Home and Community Support Services Agencies (<a id="src-tx" href="https://apps.hhs.texas.gov/providers/directories/HHA.xlsx">HHA.xlsx</a>). Hospice-only agencies and licenses marked EXPIRED are left out.</li>
+    <li><b>Medicare stars:</b> CMS Care Compare — Home Health Care Agencies (quality of patient care star rating) and the Home Health patient survey (HHCAHPS) star rating, matched by Medicare number (CCN). <a href="https://data.cms.gov/provider-data/dataset/6jpm-sxkc">Agencies</a> · <a href="https://data.cms.gov/provider-data/dataset/ccn4-8vby">Survey</a></li>
+    <li><b>Who serves your ZIP:</b> Medicare-certified agencies are shown only if CMS lists your ZIP in their service area (<a href="https://data.cms.gov/provider-data/dataset/m5eg-upu5">CMS ZIP file</a>). Texas-licensed agencies with no Medicare service-area data (mostly non-medical home care) are shown if an office is within the distance you pick (10 or 25 miles, straight-line) of your ZIP's center (<a href="https://www.census.gov/geographies/reference-files/time-series/geo/gazetteer-files.html">Census ZCTA gazetteer</a>). Distance-based matches may not serve your address — ask.</li>
+    <li><b>Locations:</b> branch offices are grouped under one card, by Medicare number (CCN) or by Texas license number.</li>
+    <li><b>License status:</b> taken from the Texas HHSC directory. "Enforcement action pending" means the license is active and HHSC has an open enforcement matter; HHSC does not publish what it is. Use "Verify on Texas HHSC" to check the current status in HHSC's TULIP provider search.</li>
+    <li><b>Care types:</b> <span class="lbl-f">Fact</span> = copied from a named source. <span class="lbl-i">Inferred</span> = our mapping, e.g. Texas "Personal Assistance Services" license ⇒ personal care and companionship; "Licensed Home Health Services" ⇒ skilled nursing.</li>
+    <li><b>Prices:</b> agencies rarely publish rates, so cards say "Call for price". The area figure is a third-party survey estimate, not any agency's price.</li>
+    <li><b>Confidence</b> (0–100): starts at 90 for government data, +10 when Texas and Medicare records agree, −20 per conflict between them, −10 per 90 days of age past 90 days. High ≥ 80, Medium 50–79, Low &lt; 50.</li>
+    <li id="built"></li>
+  </ul>
+  <h2>Disclaimer</h2>
+  <p class="disc">CareCost is an independent, free information tool. It is not affiliated with Texas HHSC or CMS, does not endorse or rank any agency, and is not medical, legal, or financial advice. Data can be out of date or wrong. Always confirm license status, services, prices, and insurance or Medicare coverage directly with the agency and the <a href="https://www.hhs.texas.gov/providers/long-term-care-providers/home-community-support-services-agencies-hcssa">state</a> before choosing care. Medicare stars apply only to Medicare-certified home health, not to private-pay non-medical care.</p>
+</section>
+</main>
+<dialog id="rep">
+  <form method="dialog" id="repf">
+    <h2>Report an error</h2>
+    <p class="meta" id="rep-who"></p>
+    <label>What's wrong?
+      <select id="rep-field"><option>Phone number</option><option>Address</option><option>Services offered</option><option>Agency closed / not operating</option><option>Price information</option><option>Other</option></select></label>
+    <label>Details <textarea id="rep-text" rows="3" maxlength="600" placeholder="What should it say? A link to the source helps."></textarea></label>
+    <p class="meta">Prototype: nothing is sent. Your report is saved on this device in the review-queue format (shown below) so it can be wired to a server later.</p>
+    <pre id="rep-out" hidden></pre>
+    <div class="acts2"><button value="cancel" class="ghost">Close</button><button id="rep-save" value="default" class="go">Save report</button></div>
+  </form>
+</dialog>
+<script src="rules.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
